@@ -1,37 +1,36 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-Regular.ttf") format("truetype");
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-Medium.ttf") format("truetype");
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-SemiBold.ttf") format("truetype");
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-Bold.ttf") format("truetype");
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
-
 
 :root {
   --background: #0d0d0e;
@@ -63,7 +62,7 @@
 
   --radius: 1.5rem;
 
-  --font-sans: "Gilroy", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Gilroy', 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
 .light {
@@ -152,4 +151,3 @@ body {
 .bg-gradient-credit-card {
   background: linear-gradient(135deg, #0d3238 0%, #082126 40%, #161618 100%);
 }
-
