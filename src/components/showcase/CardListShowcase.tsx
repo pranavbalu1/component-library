@@ -1,17 +1,24 @@
-import * as React from "react"
-import { CardDeck, type CardItem } from "@/components/ui/card-deck"
-import { Sparkles, Wallet, CreditCard, Layers, Plus, ShieldCheck } from "lucide-react"
+import * as React from 'react';
+import { CardDeck, type CardItem } from '@/components/ui/card-deck';
+import {
+  Sparkles,
+  Wallet,
+  CreditCard,
+  Layers,
+  Plus,
+  ShieldCheck,
+} from 'lucide-react';
 
 /* ==========================================================================
    SAMPLE DATASETS WITH STATIC LOGO IMAGES
    ========================================================================== */
 const primaryWalletCards: CardItem[] = [
   {
-    id: "card-1",
-    title: "Credit",
-    amount: "$4,568.00",
-    last4: "8967",
-    expiry: "05/27",
+    id: 'card-1',
+    title: 'Credit',
+    amount: '$4,568.00',
+    last4: '8967',
+    expiry: '05/27',
     vendorLogo: (
       <img
         src="/logos/visa.svg"
@@ -19,15 +26,15 @@ const primaryWalletCards: CardItem[] = [
         className="h-4 w-auto object-contain"
       />
     ),
-    gradientStyle: "from-teal-600/40 via-cyan-900/20 to-black",
-    accentColor: "#00bdf9",
+    gradientStyle: 'from-teal-600/40 via-cyan-900/20 to-black',
+    accentColor: '#00bdf9',
   },
   {
-    id: "card-2",
-    title: "Universal",
-    amount: "$567.90",
-    last4: "3021",
-    expiry: "11/28",
+    id: 'card-2',
+    title: 'Universal',
+    amount: '$567.90',
+    last4: '3021',
+    expiry: '11/28',
     vendorLogo: (
       <img
         src="/logos/mastercard.svg"
@@ -35,15 +42,15 @@ const primaryWalletCards: CardItem[] = [
         className="h-5 w-auto object-contain"
       />
     ),
-    gradientStyle: "from-indigo-600/40 via-purple-900/20 to-black",
-    accentColor: "#a855f7",
+    gradientStyle: 'from-indigo-600/40 via-purple-900/20 to-black',
+    accentColor: '#a855f7',
   },
   {
-    id: "card-3",
-    title: "Savings",
-    amount: "$12,890.50",
-    last4: "4412",
-    expiry: "09/29",
+    id: 'card-3',
+    title: 'Savings',
+    amount: '$12,890.50',
+    last4: '4412',
+    expiry: '09/29',
     vendorLogo: (
       <img
         src="/logos/visa.svg"
@@ -51,15 +58,15 @@ const primaryWalletCards: CardItem[] = [
         className="h-4 w-auto object-contain"
       />
     ),
-    gradientStyle: "from-emerald-600/40 via-zinc-900/20 to-black",
-    accentColor: "#03d791",
+    gradientStyle: 'from-emerald-600/40 via-zinc-900/20 to-black',
+    accentColor: '#03d791',
   },
   {
-    id: "card-4",
-    title: "Travel Rewards",
-    amount: "$2,100.00",
-    last4: "6500",
-    expiry: "04/30",
+    id: 'card-4',
+    title: 'Travel Rewards',
+    amount: '$2,100.00',
+    last4: '6500',
+    expiry: '04/30',
     vendorLogo: (
       <img
         src="/logos/amex.svg"
@@ -67,15 +74,15 @@ const primaryWalletCards: CardItem[] = [
         className="h-4 w-auto object-contain"
       />
     ),
-    gradientStyle: "from-amber-600/40 via-orange-950/20 to-black",
-    accentColor: "#f59e0b",
+    gradientStyle: 'from-amber-600/40 via-orange-950/20 to-black',
+    accentColor: '#f59e0b',
   },
   {
-    id: "card-5",
-    title: "Corporate Metal",
-    amount: "$34,500.00",
-    last4: "1109",
-    expiry: "12/29",
+    id: 'card-5',
+    title: 'Corporate Metal',
+    amount: '$34,500.00',
+    last4: '1109',
+    expiry: '12/29',
     vendorLogo: (
       <img
         src="/logos/visa.svg"
@@ -83,18 +90,18 @@ const primaryWalletCards: CardItem[] = [
         className="h-4 w-auto object-contain"
       />
     ),
-    gradientStyle: "from-rose-600/40 via-zinc-950/20 to-black",
-    accentColor: "#f43f5e",
+    gradientStyle: 'from-rose-600/40 via-zinc-950/20 to-black',
+    accentColor: '#f43f5e',
   },
-]
+];
 
 const corporateCards: CardItem[] = [
   {
-    id: "corp-1",
-    title: "Marketing Dept",
-    amount: "$18,400.00",
-    last4: "7721",
-    expiry: "08/28",
+    id: 'corp-1',
+    title: 'Marketing Dept',
+    amount: '$18,400.00',
+    last4: '7721',
+    expiry: '08/28',
     vendorLogo: (
       <img
         src="/logos/mastercard.svg"
@@ -102,15 +109,15 @@ const corporateCards: CardItem[] = [
         className="h-5 w-auto object-contain"
       />
     ),
-    gradientStyle: "from-blue-600/40 via-indigo-950/30 to-black",
-    accentColor: "#3b82f6",
+    gradientStyle: 'from-blue-600/40 via-indigo-950/30 to-black',
+    accentColor: '#3b82f6',
   },
   {
-    id: "corp-2",
-    title: "Engineering AWS",
-    amount: "$6,250.00",
-    last4: "4088",
-    expiry: "10/27",
+    id: 'corp-2',
+    title: 'Engineering AWS',
+    amount: '$6,250.00',
+    last4: '4088',
+    expiry: '10/27',
     vendorLogo: (
       <img
         src="/logos/visa.svg"
@@ -118,18 +125,18 @@ const corporateCards: CardItem[] = [
         className="h-4 w-auto object-contain"
       />
     ),
-    gradientStyle: "from-cyan-600/40 via-teal-950/30 to-black",
-    accentColor: "#06b6d4",
+    gradientStyle: 'from-cyan-600/40 via-teal-950/30 to-black',
+    accentColor: '#06b6d4',
   },
-]
+];
 
 const cryptoVaultCards: CardItem[] = [
   {
-    id: "crypto-1",
-    title: "Ethereum Vault",
-    amount: "$24,150.80",
-    last4: "0x8F",
-    expiry: "2028",
+    id: 'crypto-1',
+    title: 'Ethereum Vault',
+    amount: '$24,150.80',
+    last4: '0x8F',
+    expiry: '2028',
     vendorLogo: (
       <img
         src="/logos/ethereum.svg"
@@ -137,15 +144,15 @@ const cryptoVaultCards: CardItem[] = [
         className="h-4 w-auto object-contain"
       />
     ),
-    gradientStyle: "from-violet-600/50 via-fuchsia-950/30 to-black",
-    accentColor: "#8b5cf6",
+    gradientStyle: 'from-violet-600/50 via-fuchsia-950/30 to-black',
+    accentColor: '#8b5cf6',
   },
   {
-    id: "crypto-2",
-    title: "Bitcoin Hold",
-    amount: "$68,400.00",
-    last4: "0x3A",
-    expiry: "2030",
+    id: 'crypto-2',
+    title: 'Bitcoin Hold',
+    amount: '$68,400.00',
+    last4: '0x3A',
+    expiry: '2030',
     vendorLogo: (
       <img
         src="/logos/bitcoin.svg"
@@ -153,25 +160,24 @@ const cryptoVaultCards: CardItem[] = [
         className="h-4 w-auto object-contain"
       />
     ),
-    gradientStyle: "from-orange-600/40 via-amber-950/20 to-black",
-    accentColor: "#f97316",
+    gradientStyle: 'from-orange-600/40 via-amber-950/20 to-black',
+    accentColor: '#f97316',
   },
-]
+];
 
 export function CardListShowcase() {
   const [selectedMainCard, setSelectedMainCard] = React.useState<CardItem>(
-    primaryWalletCards[0]
-  )
-  const [dynamicDeck, setDynamicDeck] = React.useState<CardItem[]>(
-    primaryWalletCards
-  )
+    primaryWalletCards[0],
+  );
+  const [dynamicDeck, setDynamicDeck] =
+    React.useState<CardItem[]>(primaryWalletCards);
 
   const handleAddDynamicCard = () => {
     const cardTypes = [
       {
-        name: "Emergency Fund",
-        style: "from-emerald-600/40 via-teal-950/20 to-black",
-        color: "#10b981",
+        name: 'Emergency Fund',
+        style: 'from-emerald-600/40 via-teal-950/20 to-black',
+        color: '#10b981',
         logo: (
           <img
             src="/logos/visa.svg"
@@ -181,9 +187,9 @@ export function CardListShowcase() {
         ),
       },
       {
-        name: "SaaS Subscriptions",
-        style: "from-purple-600/40 via-indigo-950/20 to-black",
-        color: "#8b5cf6",
+        name: 'SaaS Subscriptions',
+        style: 'from-purple-600/40 via-indigo-950/20 to-black',
+        color: '#8b5cf6',
         logo: (
           <img
             src="/logos/mastercard.svg"
@@ -193,9 +199,9 @@ export function CardListShowcase() {
         ),
       },
       {
-        name: "Ad Spend",
-        style: "from-pink-600/40 via-rose-950/20 to-black",
-        color: "#ec4899",
+        name: 'Ad Spend',
+        style: 'from-pink-600/40 via-rose-950/20 to-black',
+        color: '#ec4899',
         logo: (
           <img
             src="/logos/amex.svg"
@@ -204,21 +210,21 @@ export function CardListShowcase() {
           />
         ),
       },
-    ]
-    const randomType = cardTypes[Math.floor(Math.random() * cardTypes.length)]
+    ];
+    const randomType = cardTypes[Math.floor(Math.random() * cardTypes.length)];
 
     const newCard: CardItem = {
       id: `card-${Date.now()}`,
       title: randomType.name,
       amount: `$${(Math.random() * 8000 + 500).toFixed(2)}`,
       last4: `${Math.floor(1000 + Math.random() * 9000)}`,
-      expiry: "12/31",
+      expiry: '12/31',
       vendorLogo: randomType.logo,
       gradientStyle: randomType.style,
       accentColor: randomType.color,
-    }
-    setDynamicDeck((prev) => [...prev, newCard])
-  }
+    };
+    setDynamicDeck((prev) => [...prev, newCard]);
+  };
 
   return (
     <div className="space-y-12 max-w-6xl mx-auto pb-16 select-none">
@@ -344,8 +350,12 @@ export function CardListShowcase() {
           <div className="p-6 rounded-3xl bg-zinc-950 border border-zinc-800/80 flex flex-col justify-between">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="text-sm font-bold text-white">Corporate Accounts</h3>
-                <p className="text-[11px] text-zinc-500">2 active virtual cards</p>
+                <h3 className="text-sm font-bold text-white">
+                  Corporate Accounts
+                </h3>
+                <p className="text-[11px] text-zinc-500">
+                  2 active virtual cards
+                </p>
               </div>
               <span className="text-xs font-bold text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/20">
                 Business
@@ -360,8 +370,12 @@ export function CardListShowcase() {
           <div className="p-6 rounded-3xl bg-zinc-950 border border-zinc-800/80 flex flex-col justify-between">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="text-sm font-bold text-white">Crypto & Multi-Asset Vaults</h3>
-                <p className="text-[11px] text-zinc-500">2 decentralized cold storage cards</p>
+                <h3 className="text-sm font-bold text-white">
+                  Crypto & Multi-Asset Vaults
+                </h3>
+                <p className="text-[11px] text-zinc-500">
+                  2 decentralized cold storage cards
+                </p>
               </div>
               <span className="text-xs font-bold text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20 flex items-center gap-1">
                 <Sparkles className="size-3" /> Web3
@@ -375,5 +389,5 @@ export function CardListShowcase() {
         </div>
       </section>
     </div>
-  )
+  );
 }

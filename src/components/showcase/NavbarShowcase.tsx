@@ -1,32 +1,34 @@
-import * as React from "react"
-import { 
-  Home, 
-  BarChart3, 
-  ArrowLeftRight, 
-  CreditCard, 
-  ShieldCheck, 
-  HelpCircle, 
-  Building2 
-} from "lucide-react"
+import * as React from 'react';
+import {
+  Home,
+  BarChart3,
+  ArrowLeftRight,
+  CreditCard,
+  ShieldCheck,
+  HelpCircle,
+  Building2,
+} from 'lucide-react';
 
-import { Navbar, type NavItem } from "@/components/ui/navbar"
+import { Navbar, type NavItem } from '@/components/ui/navbar';
 
 export function NavbarShowcase() {
-  const [activeTabLog, setActiveTabLog] = React.useState<string>("home")
+  const [activeTabLog, setActiveTabLog] = React.useState<string>('home');
 
   // Custom enterprise navigation items for test case #2
   const enterpriseNavItems: NavItem[] = [
-    { id: "overview", label: "Overview", icon: Home },
-    { id: "treasury", label: "Treasury", icon: Building2 },
-    { id: "reports", label: "Reports", icon: BarChart3, badge: "NEW" },
-    { id: "security", label: "Security", icon: ShieldCheck },
-    { id: "support", label: "Support", icon: HelpCircle },
-  ]
+    { id: 'overview', label: 'Overview', icon: Home },
+    { id: 'treasury', label: 'Treasury', icon: Building2 },
+    { id: 'reports', label: 'Reports', icon: BarChart3, badge: 'NEW' },
+    { id: 'security', label: 'Security', icon: ShieldCheck },
+    { id: 'support', label: 'Support', icon: HelpCircle },
+  ];
 
   return (
     <section className="space-y-10 py-6">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">Navbar Component Suite</h2>
+        <h2 className="text-2xl font-bold tracking-tight">
+          Navbar Component Suite
+        </h2>
         <p className="text-sm text-muted-foreground mt-1">
           Interactive test cases for the navigation bar component.
         </p>
@@ -65,7 +67,7 @@ export function NavbarShowcase() {
             notificationCount={9}
             userName="Jordan Vance"
             userAvatarUrl="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop"
-            onTabChange={(id) => console.log("Enterprise Tab:", id)}
+            onTabChange={(id) => console.log('Enterprise Tab:', id)}
           />
         </div>
       </div>
@@ -81,12 +83,12 @@ export function NavbarShowcase() {
             brandLogoText="BN"
             notificationCount={0}
             items={[
-              { id: "send", label: "Send", icon: ArrowLeftRight },
-              { id: "cards", label: "My Cards", icon: CreditCard },
+              { id: 'send', label: 'Send', icon: ArrowLeftRight },
+              { id: 'cards', label: 'My Cards', icon: CreditCard },
             ]}
           />
         </div>
       </div>
     </section>
-  )
+  );
 }

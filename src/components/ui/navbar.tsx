@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react';
 import {
   Home,
   BarChart3,
@@ -15,81 +15,81 @@ import {
   User,
   LogOut,
   Settings,
-} from "lucide-react"
+} from 'lucide-react';
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export interface NavItem {
-  id: string
-  label: string
-  icon: React.ElementType
-  badge?: string | number
-  href?: string
+  id: string;
+  label: string;
+  icon: React.ElementType;
+  badge?: string | number;
+  href?: string;
 }
 
 export interface NavbarProps extends React.HTMLAttributes<HTMLElement> {
   /** Initial active tab ID */
-  defaultActiveId?: string
+  defaultActiveId?: string;
   /** Navigation links to render */
-  items?: NavItem[]
+  items?: NavItem[];
   /** Brand title text */
-  brandName?: string
+  brandName?: string;
   /** Brand logo mark initials or text */
-  brandLogoText?: string
+  brandLogoText?: string;
   /** User profile image URL */
-  userAvatarUrl?: string
+  userAvatarUrl?: string;
   /** User name display */
-  userName?: string
+  userName?: string;
   /** Notification badge count */
-  notificationCount?: number
+  notificationCount?: number;
   /** Callback fired when tab changes */
-  onTabChange?: (id: string) => void
+  onTabChange?: (id: string) => void;
   /** Optional custom right-side elements */
-  showSearch?: boolean
+  showSearch?: boolean;
 }
 
 const defaultNavItems: NavItem[] = [
-  { id: "home", label: "Home", icon: Home },
-  { id: "analytics", label: "Analytics", icon: BarChart3 },
-  { id: "transactions", label: "Transactions", icon: ArrowLeftRight, badge: 3 },
-  { id: "payment", label: "Payment", icon: CreditCardIcon },
-  { id: "plan", label: "Plan", icon: Wallet },
-  { id: "cards", label: "Cards", icon: Layers },
-]
+  { id: 'home', label: 'Home', icon: Home },
+  { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+  { id: 'transactions', label: 'Transactions', icon: ArrowLeftRight, badge: 3 },
+  { id: 'payment', label: 'Payment', icon: CreditCardIcon },
+  { id: 'plan', label: 'Plan', icon: Wallet },
+  { id: 'cards', label: 'Cards', icon: Layers },
+];
 
 export function Navbar({
   className,
-  defaultActiveId = "home",
+  defaultActiveId = 'home',
   items = defaultNavItems,
-  brandName = "BrandName",
-  brandLogoText = "BN",
-  userAvatarUrl = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
-  userName = "Alex Morgan",
+  brandName = 'BrandName',
+  brandLogoText = 'BN',
+  userAvatarUrl = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop',
+  userName = 'Alex Morgan',
   notificationCount = 2,
   onTabChange,
   showSearch = false,
   ...props
 }: NavbarProps) {
-  const [activeTab, setActiveTab] = React.useState(defaultActiveId)
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
-  const [profileDropdownOpen, setProfileDropdownOpen] = React.useState(false)
+  const [activeTab, setActiveTab] = React.useState(defaultActiveId);
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = React.useState(false);
 
   const handleTabClick = (id: string) => {
-    setActiveTab(id)
-    onTabChange?.(id)
-    setMobileMenuOpen(false)
-  }
+    setActiveTab(id);
+    onTabChange?.(id);
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header
       className={cn(
         /* Outer margin & container floating style */
-        "mx-3 sm:mx-6 my-4 w-[calc(100%-1.5rem)] sm:w-[calc(100%-3rem)]",
-        "relative flex items-center justify-between py-3 px-4 sm:px-6",
-        "bg-background/80 backdrop-blur-md rounded-2xl border border-border/60 shadow-xs",
-        className
+        'mx-3 sm:mx-6 my-4 w-[calc(100%-1.5rem)] sm:w-[calc(100%-3rem)]',
+        'relative flex items-center justify-between py-3 px-4 sm:px-6',
+        'bg-background/80 backdrop-blur-md rounded-2xl border border-border/60 shadow-xs',
+        className,
       )}
       {...props}
     >
@@ -118,18 +118,18 @@ export function Navbar({
       {/* Desktop Floating Pill Navigation Dock */}
       <nav className="hidden lg:flex items-center gap-1 bg-muted/60 p-1.5 rounded-full border border-border/80">
         {items.map((item) => {
-          const Icon = item.icon
-          const isActive = activeTab === item.id
+          const Icon = item.icon;
+          const isActive = activeTab === item.id;
 
           return (
             <button
               key={item.id}
               onClick={() => handleTabClick(item.id)}
               className={cn(
-                "relative flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 outline-none select-none",
+                'relative flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 outline-none select-none',
                 isActive
-                  ? "bg-primary text-primary-foreground shadow-xs"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  ? 'bg-primary text-primary-foreground shadow-xs'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/50',
               )}
             >
               <Icon className="size-3.5" />
@@ -139,17 +139,17 @@ export function Navbar({
               {item.badge && (
                 <span
                   className={cn(
-                    "ml-0.5 px-1.5 py-0.2 text-[10px] rounded-full font-bold",
+                    'ml-0.5 px-1.5 py-0.2 text-[10px] rounded-full font-bold',
                     isActive
-                      ? "bg-black/20 text-black"
-                      : "bg-secondary text-secondary-foreground"
+                      ? 'bg-black/20 text-black'
+                      : 'bg-secondary text-secondary-foreground',
                   )}
                 >
                   {item.badge}
                 </span>
               )}
             </button>
-          )
+          );
         })}
       </nav>
 
@@ -203,7 +203,9 @@ export function Navbar({
             <div className="absolute right-0 mt-2 w-48 rounded-2xl bg-card border border-border/80 shadow-xl p-2 z-50 text-xs animate-in fade-in slide-in-from-top-2">
               <div className="px-3 py-2 border-b border-border/50 mb-1">
                 <p className="font-semibold text-foreground">{userName}</p>
-                <p className="text-muted-foreground text-[10px] truncate">alex.m@finflex.io</p>
+                <p className="text-muted-foreground text-[10px] truncate">
+                  alex.m@finflex.io
+                </p>
               </div>
               <button
                 onClick={() => setProfileDropdownOpen(false)}
@@ -236,7 +238,11 @@ export function Navbar({
           onClick={() => setMobileMenuOpen((prev) => !prev)}
           aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+          {mobileMenuOpen ? (
+            <X className="size-4" />
+          ) : (
+            <Menu className="size-4" />
+          )}
         </Button>
       </div>
 
@@ -244,18 +250,18 @@ export function Navbar({
       {mobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 mt-2 p-3 bg-card border border-border rounded-2xl shadow-2xl lg:hidden z-40 space-y-1 animate-in fade-in slide-in-from-top-2">
           {items.map((item) => {
-            const Icon = item.icon
-            const isActive = activeTab === item.id
+            const Icon = item.icon;
+            const isActive = activeTab === item.id;
 
             return (
               <button
                 key={item.id}
                 onClick={() => handleTabClick(item.id)}
                 className={cn(
-                  "w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-xs font-semibold transition-all",
+                  'w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-xs font-semibold transition-all',
                   isActive
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted',
                 )}
               >
                 <div className="flex items-center gap-3">
@@ -268,10 +274,10 @@ export function Navbar({
                   </span>
                 )}
               </button>
-            )
+            );
           })}
         </div>
       )}
     </header>
-  )
+  );
 }

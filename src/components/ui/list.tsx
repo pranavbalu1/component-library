@@ -1,54 +1,54 @@
-import * as React from "react"
-import { ChevronRight } from "lucide-react"
+import * as React from 'react';
+import { ChevronRight } from 'lucide-react';
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 export interface ListItemData {
-  id: string
-  title: string
-  subtitle?: string
-  date?: string
-  amount?: number | string
+  id: string;
+  title: string;
+  subtitle?: string;
+  date?: string;
+  amount?: number | string;
   /** Controls green (+) vs default text color styling */
-  isPositive?: boolean
+  isPositive?: boolean;
   /** Filter tab value group (e.g. "income", "expense", "transfer") */
-  type?: string
-  category?: string
-  icon?: React.ElementType
+  type?: string;
+  category?: string;
+  icon?: React.ElementType;
   /** Custom Tailwind classes for icon container background/text */
-  iconVariant?: string
-  badge?: string
+  iconVariant?: string;
+  badge?: string;
 }
 
 export interface ListFilterTab {
-  id: string
-  label: string
+  id: string;
+  label: string;
 }
 
 export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
-  title?: string
-  subtitle?: string
-  actionLabel?: string
-  onActionClick?: () => void
-  items?: ListItemData[]
-  onItemClick?: (item: ListItemData) => void
+  title?: string;
+  subtitle?: string;
+  actionLabel?: string;
+  onActionClick?: () => void;
+  items?: ListItemData[];
+  onItemClick?: (item: ListItemData) => void;
   /** Filter tabs to render above the scrollable list */
-  filterTabs?: ListFilterTab[]
+  filterTabs?: ListFilterTab[];
   /** Default active filter tab ID */
-  defaultFilterId?: string
-  /** 
+  defaultFilterId?: string;
+  /**
    * Fixed height class for the scrollable container to prevent height jumps when toggling tabs.
    * Defaults to "h-[300px]". Pass "h-[240px]" or any custom height.
    */
-  heightClass?: string
+  heightClass?: string;
 }
 
 const defaultTabs: ListFilterTab[] = [
-  { id: "all", label: "All" },
-  { id: "income", label: "Income" },
-  { id: "expense", label: "Expenses" },
-]
+  { id: 'all', label: 'All' },
+  { id: 'income', label: 'Income' },
+  { id: 'expense', label: 'Expenses' },
+];
 
 export function List({
   className,
@@ -59,23 +59,23 @@ export function List({
   items = [],
   onItemClick,
   filterTabs = defaultTabs,
-  defaultFilterId = "all",
-  heightClass = "h-[300px]",
+  defaultFilterId = 'all',
+  heightClass = 'h-[300px]',
   ...props
 }: ListProps) {
-  const [activeFilter, setActiveFilter] = React.useState(defaultFilterId)
+  const [activeFilter, setActiveFilter] = React.useState(defaultFilterId);
 
   // Filter items based on active tab
   const filteredItems = React.useMemo(() => {
-    if (activeFilter === "all") return items
-    return items.filter((item) => item.type === activeFilter)
-  }, [items, activeFilter])
+    if (activeFilter === 'all') return items;
+    return items.filter((item) => item.type === activeFilter);
+  }, [items, activeFilter]);
 
   return (
     <div
       className={cn(
-        "w-full rounded-3xl bg-card border border-border/70 p-5 shadow-xl flex flex-col",
-        className
+        'w-full rounded-3xl bg-card border border-border/70 p-5 shadow-xl flex flex-col',
+        className,
       )}
       {...props}
     >
@@ -111,21 +111,21 @@ export function List({
       {filterTabs && filterTabs.length > 0 && (
         <div className="flex items-center gap-1.5 mb-3 bg-muted/50 p-1 rounded-full border border-border/40 w-fit">
           {filterTabs.map((tab) => {
-            const isActive = activeFilter === tab.id
+            const isActive = activeFilter === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveFilter(tab.id)}
                 className={cn(
-                  "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-150 outline-none select-none",
+                  'px-3 py-1 rounded-full text-xs font-semibold transition-all duration-150 outline-none select-none',
                   isActive
-                    ? "bg-primary text-primary-foreground shadow-xs"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                    ? 'bg-primary text-primary-foreground shadow-xs'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/60',
                 )}
               >
                 {tab.label}
               </button>
-            )
+            );
           })}
         </div>
       )}
@@ -133,8 +133,8 @@ export function List({
       {/* Fixed Height Scrollable Container */}
       <div
         className={cn(
-          "overflow-y-auto pr-1 space-y-1 scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent",
-          heightClass
+          'overflow-y-auto pr-1 space-y-1 scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent',
+          heightClass,
         )}
       >
         {filteredItems.length === 0 ? (
@@ -143,16 +143,16 @@ export function List({
           </div>
         ) : (
           filteredItems.map((item) => {
-            const IconComponent = item.icon
+            const IconComponent = item.icon;
 
             return (
               <div
                 key={item.id}
                 onClick={() => onItemClick?.(item)}
                 className={cn(
-                  "group relative flex items-center justify-between p-3 rounded-2xl",
-                  "transition-all duration-200 cursor-pointer select-none",
-                  "hover:bg-muted/50 border border-transparent hover:border-border/40"
+                  'group relative flex items-center justify-between p-3 rounded-2xl',
+                  'transition-all duration-200 cursor-pointer select-none',
+                  'hover:bg-muted/50 border border-transparent hover:border-border/40',
                 )}
               >
                 {/* Left Side: Icon & Info */}
@@ -160,8 +160,8 @@ export function List({
                   {IconComponent && (
                     <div
                       className={cn(
-                        "size-10 rounded-2xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-105",
-                        item.iconVariant || "bg-muted text-foreground"
+                        'size-10 rounded-2xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-105',
+                        item.iconVariant || 'bg-muted text-foreground',
                       )}
                     >
                       <IconComponent className="size-5" />
@@ -194,12 +194,14 @@ export function List({
                     {item.amount !== undefined && (
                       <p
                         className={cn(
-                          "text-sm font-bold tracking-tight",
-                          item.isPositive ? "text-emerald-400" : "text-foreground"
+                          'text-sm font-bold tracking-tight',
+                          item.isPositive
+                            ? 'text-emerald-400'
+                            : 'text-foreground',
                         )}
                       >
-                        {item.isPositive && "+"}
-                        {typeof item.amount === "number"
+                        {item.isPositive && '+'}
+                        {typeof item.amount === 'number'
                           ? `$${item.amount.toLocaleString(undefined, {
                               minimumFractionDigits: 2,
                               maximumFractionDigits: 2,
@@ -216,10 +218,10 @@ export function List({
                   </div>
                 )}
               </div>
-            )
+            );
           })
         )}
       </div>
     </div>
-  )
+  );
 }

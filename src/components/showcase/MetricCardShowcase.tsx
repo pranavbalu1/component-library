@@ -1,5 +1,5 @@
-import * as React from "react"
-import { MetricCard } from "@/components/ui/metric-card"
+import * as React from 'react';
+import { MetricCard } from '@/components/ui/metric-card';
 
 export function MetricCardShowcase() {
   return (
@@ -9,27 +9,28 @@ export function MetricCardShowcase() {
           FinFlex Metric Displays
         </h2>
         <p className="text-sm text-muted-foreground mt-1">
-          Configurable stat cards with flexible font sizing, priority emphasis, and specialized metric types.
+          Configurable stat cards with flexible font sizing, priority emphasis,
+          and specialized metric types.
         </p>
       </div>
 
       {/* Grid Showcase */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
         {/* Case 1: High Priority Hero Balance (Large 2XL Font Size) */}
         <div className="space-y-2 lg:col-span-2">
           <span className="text-xs font-mono text-muted-foreground">
-            Case 1: High Priority Hero Balance (`fontSize="2xl"`, `priority="high"`)
+            Case 1: High Priority Hero Balance (`fontSize="2xl"`,
+            `priority="high"`)
           </span>
           <MetricCard
             priority="high"
             type="standard"
             fontSize="2xl"
             title="Total Net Worth"
-            amount={142850.50}
+            amount={142850.5}
             changePercentage={14.2}
             changeAmount="+$17,800.00"
-            onActionClick={() => alert("Net Worth breakdown")}
+            onActionClick={() => alert('Net Worth breakdown')}
           />
         </div>
 
@@ -45,7 +46,7 @@ export function MetricCardShowcase() {
             title="Monthly Cashflow"
             amount="$4,320.00"
             changePercentage={6.8}
-            onActionClick={() => alert("Cashflow log")}
+            onActionClick={() => alert('Cashflow log')}
           />
         </div>
 
@@ -63,7 +64,7 @@ export function MetricCardShowcase() {
             amount="$7,500"
             targetAmount="$10k"
             progressPercentage={75}
-            onActionClick={() => alert("Emergency fund settings")}
+            onActionClick={() => alert('Emergency fund settings')}
           />
         </div>
 
@@ -81,14 +82,15 @@ export function MetricCardShowcase() {
             amount="$1,600"
             targetAmount="$5k"
             progressPercentage={32}
-            onActionClick={() => alert("Manage credit cards")}
+            onActionClick={() => alert('Manage credit cards')}
           />
         </div>
 
         {/* Case 5: Low Priority Micro Stat (Small Font Size) */}
         <div className="space-y-2">
           <span className="text-xs font-mono text-muted-foreground">
-            Case 5: Low Priority / Micro Metric (`fontSize="sm"`, `priority="low"`)
+            Case 5: Low Priority / Micro Metric (`fontSize="sm"`,
+            `priority="low"`)
           </span>
           <MetricCard
             priority="low"
@@ -97,28 +99,28 @@ export function MetricCardShowcase() {
             title="Pending Rewards"
             amount="$128.40"
             changeAmount="3,420 pts"
-            onActionClick={() => alert("Redeem points")}
+            onActionClick={() => alert('Redeem points')}
           />
         </div>
 
         {/* Case 6: Custom Tailwind Class Font Styling */}
         <div className="space-y-2 lg:col-span-3">
           <span className="text-xs font-mono text-muted-foreground">
-            Case 6: Custom Tailwind Font Class (`fontSize="text-4xl tracking-widest text-primary"`)
+            Case 6: Custom Tailwind Font Class (`fontSize="text-4xl
+            tracking-widest text-primary"`)
           </span>
           <MetricCard
             priority="medium"
             type="standard"
             fontSize="text-4xl font-extrabold tracking-tight text-primary"
             title="Investment Portfolio (BTC / ETH)"
-            amount={84920.00}
+            amount={84920.0}
             changePercentage={-2.4}
             changeAmount="-$2,100.00"
-            onActionClick={() => alert("Crypto portfolio")}
+            onActionClick={() => alert('Crypto portfolio')}
           />
         </div>
-
       </div>
     </div>
-  )
+  );
 }
