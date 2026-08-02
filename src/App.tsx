@@ -7,6 +7,10 @@ import { MetricCardShowcase } from '@/components/showcase/MetricCardShowcase';
 import { ChartsShowcase } from '@/components/showcase/ChartsShowcase';
 import { CardListShowcase } from '@/components/showcase/CardListShowcase';
 import { FormShowcase } from '@/components/showcase/FormShowcase';
+import { CommandMenuShowcase } from '@/components/showcase/CommandMenuShowcase';
+import { DropdownShowcase } from '@/components/showcase/Dropdown';
+import { PaginationShowcase } from '@/components/showcase/Pagination';
+import { SkeletonShowcase } from '@/components/showcase/SkeletonShowcase';
 import {
   LayoutGrid,
   Navigation,
@@ -17,6 +21,10 @@ import {
   CreditCard,
   Sparkles,
   Code2,
+  ChevronLeft,   
+  ChevronDown,   
+  Bone,
+  Command,       
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -64,6 +72,30 @@ const showcases = [
     icon: Code2,
     component: FormShowcase,
   },
+  {
+    path: '/command-menu',
+    label: 'Command Menu',
+    icon: Command,
+    component: CommandMenuShowcase,
+  },
+  {
+    path: '/dropdown',
+    label: 'Dropdown',
+    icon: ChevronDown,
+    component: DropdownShowcase,
+  },
+  {
+    path: '/pagination',
+    label: 'Pagination',
+    icon: ChevronLeft,
+    component: PaginationShowcase,
+  },
+  {
+    path: '/skeleton',
+    label: 'Skeletons',
+    icon: Bone,
+    component: SkeletonShowcase,
+  }
 ];
 
 function HomePage() {
@@ -218,6 +250,10 @@ export default function App() {
             <Route path="/charts" element={<ChartsShowcase />} />
             <Route path="/cards" element={<CardListShowcase />} />
             <Route path="/forms" element={<FormShowcase />} />
+            <Route path="/command-menu" element={<CommandMenuShowcase />} />
+            <Route path="/dropdown" element={<DropdownShowcase />} />
+            <Route path="/pagination" element={<PaginationShowcase />} />
+            <Route path="/skeleton" element={<SkeletonShowcase />} />
           </Routes>
         </div>
       </main>
