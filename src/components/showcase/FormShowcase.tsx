@@ -4,18 +4,13 @@ import {
   ArrowUpRight,
   Plus,
   Search,
-  SlidersHorizontal,
   Wallet,
   ShoppingBag,
   Coffee,
   Zap,
   TrendingUp,
   CheckCircle2,
-  XCircle,
   Sparkles,
-  DollarSign,
-  Calendar,
-  Layers,
 } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -103,7 +98,7 @@ export function FormShowcase() {
   // Demo State: Search & Filter Panel synced with List
   const [searchQuery, setSearchQuery] = React.useState('');
   const [selectedCategory, setSelectedCategory] = React.useState('all');
-  const [activeTabFilter, setActiveTabFilter] = React.useState('all');
+  const [activeTabFilter] = React.useState('all');
 
   // Filter list items based on search query, dropdown, and tabs
   const filteredListItems = React.useMemo(() => {

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { MetricCard } from '@/components/ui/metric-card';
 
 export function MetricCardShowcase() {

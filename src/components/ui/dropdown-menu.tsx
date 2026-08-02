@@ -35,7 +35,10 @@ export function DropdownMenu({
   // Close on outside click
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
@@ -60,7 +63,10 @@ export function DropdownMenu({
   return (
     <div ref={dropdownRef} className="relative inline-block text-left">
       {/* Trigger element */}
-      <div onClick={() => setIsOpen((prev) => !prev)} className="cursor-pointer">
+      <div
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="cursor-pointer"
+      >
         {trigger}
       </div>
 
@@ -69,14 +75,16 @@ export function DropdownMenu({
         <div
           className={cn(
             'absolute z-50 mt-2 min-w-[200px] rounded-2xl bg-card border border-border/70 p-1.5 shadow-xl backdrop-blur-md animate-in fade-in zoom-in-95 duration-100',
-            align === 'right' ? 'right-0 origin-top-right' : 'left-0 origin-top-left',
-            className
+            align === 'right'
+              ? 'right-0 origin-top-right'
+              : 'left-0 origin-top-left',
+            className,
           )}
         >
           {sections.map((section, sIdx) => (
             <React.Fragment key={sIdx}>
               {sIdx > 0 && <div className="my-1 border-t border-border/60" />}
-              
+
               {section.title && (
                 <div className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
                   {section.title}
@@ -99,12 +107,14 @@ export function DropdownMenu({
                       item.disabled
                         ? 'opacity-40 cursor-not-allowed'
                         : item.destructive
-                        ? 'text-destructive hover:bg-destructive/10'
-                        : 'text-foreground hover:bg-muted/70'
+                          ? 'text-destructive hover:bg-destructive/10'
+                          : 'text-foreground hover:bg-muted/70',
                     )}
                   >
                     <span className="flex items-center gap-2">
-                      {item.icon && <span className="size-4 shrink-0">{item.icon}</span>}
+                      {item.icon && (
+                        <span className="size-4 shrink-0">{item.icon}</span>
+                      )}
                       <span>{item.label}</span>
                     </span>
 

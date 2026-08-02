@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ArrowUpRight, ArrowDownLeft, Calendar, Tag } from 'lucide-react';
+import { ArrowUpRight, ArrowDownLeft } from 'lucide-react';
 import { FormField, FormSection } from './form-field';
 import { Select } from './select';
 import { CurrencyInput } from './currency-input';

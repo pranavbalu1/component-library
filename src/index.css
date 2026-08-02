@@ -152,7 +152,6 @@ body {
   background: linear-gradient(135deg, #0d3238 0%, #082126 40%, #161618 100%);
 }
 
-
 @keyframes shimmer {
   100% {
     transform: translateX(100%);

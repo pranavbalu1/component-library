@@ -8,8 +8,6 @@ import {
   Car,
   CreditCard,
   Globe,
-  Bell,
-  ShieldAlert,
 } from 'lucide-react';
 
 import { List, type ListItemData } from '@/components/ui/list';

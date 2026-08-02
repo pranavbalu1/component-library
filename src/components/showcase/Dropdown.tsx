@@ -39,15 +39,17 @@ export function DropdownShowcase() {
           <Sparkles className="size-4" />
           <span>Interactive Menus</span>
         </div>
-        <h1 className="text-3xl font-extrabold tracking-tight">Dropdown Menu Variants</h1>
+        <h1 className="text-3xl font-extrabold tracking-tight">
+          Dropdown Menu Variants
+        </h1>
         <p className="text-xs text-muted-foreground">
-          Explore multi-section account menus, organization switchers, contextual action menus, filters, and export controls.
+          Explore multi-section account menus, organization switchers,
+          contextual action menus, filters, and export controls.
         </p>
       </div>
 
       {/* Grid Displaying 6 Types of Dropdowns */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
         {/* 1. Account & Profile Menu */}
         <div className="p-6 rounded-3xl bg-card border border-border/70 space-y-4 flex flex-col justify-between shadow-xs">
           <div className="space-y-1.5">
@@ -56,7 +58,8 @@ export function DropdownShowcase() {
               <span>1. Account & Profile Menu</span>
             </h3>
             <p className="text-xs text-muted-foreground">
-              Multi-section menu with user profile, navigation shortcuts, and a destructive sign-out action.
+              Multi-section menu with user profile, navigation shortcuts, and a
+              destructive sign-out action.
             </p>
           </div>
 
@@ -69,8 +72,12 @@ export function DropdownShowcase() {
                     JD
                   </div>
                   <div className="flex flex-col text-left">
-                    <span className="text-xs font-semibold leading-tight">John Doe</span>
-                    <span className="text-[10px] text-muted-foreground leading-tight">john@kyougen.io</span>
+                    <span className="text-xs font-semibold leading-tight">
+                      John Doe
+                    </span>
+                    <span className="text-[10px] text-muted-foreground leading-tight">
+                      john@kyougen.io
+                    </span>
                   </div>
                   <ChevronDown className="size-3.5 text-muted-foreground ml-1" />
                 </button>
@@ -79,9 +86,23 @@ export function DropdownShowcase() {
                 {
                   title: 'Account',
                   items: [
-                    { id: 'profile', label: 'User Profile', icon: <User />, shortcut: '⌘P' },
-                    { id: 'settings', label: 'Preferences', icon: <Settings />, shortcut: '⌘S' },
-                    { id: 'security', label: 'Security & 2FA', icon: <Shield /> },
+                    {
+                      id: 'profile',
+                      label: 'User Profile',
+                      icon: <User />,
+                      shortcut: '⌘P',
+                    },
+                    {
+                      id: 'settings',
+                      label: 'Preferences',
+                      icon: <Settings />,
+                      shortcut: '⌘S',
+                    },
+                    {
+                      id: 'security',
+                      label: 'Security & 2FA',
+                      icon: <Shield />,
+                    },
                   ],
                 },
                 {
@@ -108,14 +129,20 @@ export function DropdownShowcase() {
               <span>2. Environment Switcher</span>
             </h3>
             <p className="text-xs text-muted-foreground">
-              Active selection: <span className="font-semibold text-emerald-400">{selectedEnv}</span>
+              Active selection:{' '}
+              <span className="font-semibold text-emerald-400">
+                {selectedEnv}
+              </span>
             </p>
           </div>
 
           <div className="pt-2">
             <DropdownMenu
               trigger={
-                <Button variant="outline" className="w-full justify-between text-xs font-semibold border-border/70">
+                <Button
+                  variant="outline"
+                  className="w-full justify-between text-xs font-semibold border-border/70"
+                >
                   <span className="flex items-center gap-2">
                     <Layers className="size-4 text-emerald-400" />
                     <span>{selectedEnv}</span>
@@ -160,14 +187,18 @@ export function DropdownShowcase() {
               <span>3. Sorting Options</span>
             </h3>
             <p className="text-xs text-muted-foreground">
-              Sorted by: <span className="font-semibold text-sky-400">{selectedSort}</span>
+              Sorted by:{' '}
+              <span className="font-semibold text-sky-400">{selectedSort}</span>
             </p>
           </div>
 
           <div className="pt-2">
             <DropdownMenu
               trigger={
-                <Button variant="outline" className="w-full justify-between text-xs font-semibold border-border/70">
+                <Button
+                  variant="outline"
+                  className="w-full justify-between text-xs font-semibold border-border/70"
+                >
                   <span className="flex items-center gap-2">
                     <SlidersHorizontal className="size-3.5 text-sky-400" />
                     <span>Sort: {selectedSort}</span>
@@ -182,19 +213,28 @@ export function DropdownShowcase() {
                     {
                       id: 'recent',
                       label: 'Most Recent',
-                      icon: selectedSort === 'Most Recent' ? <Check className="size-3.5" /> : undefined,
+                      icon:
+                        selectedSort === 'Most Recent' ? (
+                          <Check className="size-3.5" />
+                        ) : undefined,
                       onClick: () => setSelectedSort('Most Recent'),
                     },
                     {
                       id: 'name',
                       label: 'Name (A-Z)',
-                      icon: selectedSort === 'Name (A-Z)' ? <Check className="size-3.5" /> : undefined,
+                      icon:
+                        selectedSort === 'Name (A-Z)' ? (
+                          <Check className="size-3.5" />
+                        ) : undefined,
                       onClick: () => setSelectedSort('Name (A-Z)'),
                     },
                     {
                       id: 'status',
                       label: 'Status Priority',
-                      icon: selectedSort === 'Status Priority' ? <Check className="size-3.5" /> : undefined,
+                      icon:
+                        selectedSort === 'Status Priority' ? (
+                          <Check className="size-3.5" />
+                        ) : undefined,
                       onClick: () => setSelectedSort('Status Priority'),
                     },
                   ],
@@ -212,7 +252,8 @@ export function DropdownShowcase() {
               <span>4. Contextual Row Actions</span>
             </h3>
             <p className="text-xs text-muted-foreground">
-              Quick item-level actions for data tables, card lists, and file trees.
+              Quick item-level actions for data tables, card lists, and file
+              trees.
             </p>
           </div>
 
@@ -220,7 +261,11 @@ export function DropdownShowcase() {
             <DropdownMenu
               align="left"
               trigger={
-                <Button variant="outline" size="icon" className="size-9 rounded-xl border-border/70">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="size-9 rounded-xl border-border/70"
+                >
                   <MoreHorizontal className="size-4" />
                 </Button>
               }
@@ -228,8 +273,18 @@ export function DropdownShowcase() {
                 {
                   title: 'Actions',
                   items: [
-                    { id: 'edit', label: 'Edit Metadata', icon: <Edit3 />, onClick: () => alert('Edit clicked') },
-                    { id: 'duplicate', label: 'Duplicate Entry', icon: <Copy />, onClick: () => alert('Duplicate clicked') },
+                    {
+                      id: 'edit',
+                      label: 'Edit Metadata',
+                      icon: <Edit3 />,
+                      onClick: () => alert('Edit clicked'),
+                    },
+                    {
+                      id: 'duplicate',
+                      label: 'Duplicate Entry',
+                      icon: <Copy />,
+                      onClick: () => alert('Duplicate clicked'),
+                    },
                   ],
                 },
                 {
@@ -256,14 +311,20 @@ export function DropdownShowcase() {
               <span>5. Theme Switcher</span>
             </h3>
             <p className="text-xs text-muted-foreground">
-              Current Mode: <span className="font-semibold text-amber-400">{selectedTheme}</span>
+              Current Mode:{' '}
+              <span className="font-semibold text-amber-400">
+                {selectedTheme}
+              </span>
             </p>
           </div>
 
           <div className="pt-2">
             <DropdownMenu
               trigger={
-                <Button variant="outline" className="w-full justify-between text-xs font-semibold border-border/70">
+                <Button
+                  variant="outline"
+                  className="w-full justify-between text-xs font-semibold border-border/70"
+                >
                   <span>Theme ({selectedTheme})</span>
                   <ChevronDown className="size-3.5 text-muted-foreground" />
                 </Button>
@@ -312,7 +373,10 @@ export function DropdownShowcase() {
           <div className="pt-2">
             <DropdownMenu
               trigger={
-                <Button variant="outline" className="w-full justify-between text-xs font-semibold border-border/70">
+                <Button
+                  variant="outline"
+                  className="w-full justify-between text-xs font-semibold border-border/70"
+                >
                   <span className="flex items-center gap-2">
                     <Download className="size-3.5 text-purple-400" />
                     <span>Export Report</span>
@@ -324,16 +388,30 @@ export function DropdownShowcase() {
                 {
                   title: 'Download Format',
                   items: [
-                    { id: 'csv', label: 'Export as CSV', icon: <FileSpreadsheet />, onClick: () => alert('Exporting CSV...') },
-                    { id: 'pdf', label: 'Export as PDF Document', icon: <FileText />, onClick: () => alert('Exporting PDF...') },
-                    { id: 'json', label: 'Export raw JSON', icon: <FileCode />, onClick: () => alert('Exporting JSON...') },
+                    {
+                      id: 'csv',
+                      label: 'Export as CSV',
+                      icon: <FileSpreadsheet />,
+                      onClick: () => alert('Exporting CSV...'),
+                    },
+                    {
+                      id: 'pdf',
+                      label: 'Export as PDF Document',
+                      icon: <FileText />,
+                      onClick: () => alert('Exporting PDF...'),
+                    },
+                    {
+                      id: 'json',
+                      label: 'Export raw JSON',
+                      icon: <FileCode />,
+                      onClick: () => alert('Exporting JSON...'),
+                    },
                   ],
                 },
               ]}
             />
           </div>
         </div>
-
       </div>
     </div>
   );

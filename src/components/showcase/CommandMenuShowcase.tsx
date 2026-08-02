@@ -4,7 +4,6 @@ import {
   Terminal,
   FileCode2,
   Settings,
-  Plus,
   Compass,
   Zap,
   Cpu,
@@ -23,7 +22,9 @@ import { CommandMenu, type CommandItem } from '../ui/command-menu';
 
 export function CommandMenuShowcase() {
   const [activeMenu, setActiveMenu] = React.useState<string | null>(null);
-  const [activeTheme, setActiveTheme] = React.useState<'System' | 'Light' | 'Dark'>('System');
+  const [activeTheme, setActiveTheme] = React.useState<
+    'System' | 'Light' | 'Dark'
+  >('System');
 
   // --- MENU 1: Global Search & Navigation ---
   const navigationItems: CommandItem[] = [
@@ -180,15 +181,17 @@ export function CommandMenuShowcase() {
           <Sparkles className="size-4" />
           <span>Command Palettes</span>
         </div>
-        <h1 className="text-3xl font-extrabold tracking-tight">Command Menu Variants</h1>
+        <h1 className="text-3xl font-extrabold tracking-tight">
+          Command Menu Variants
+        </h1>
         <p className="text-xs text-muted-foreground">
-          Explore modal command palettes configured for global search, DevOps actions, file finders, and app settings.
+          Explore modal command palettes configured for global search, DevOps
+          actions, file finders, and app settings.
         </p>
       </div>
 
       {/* Grid of 4 Command Palette Triggers */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
         {/* Variant 1: Global Navigation */}
         <div className="p-6 rounded-3xl bg-card border border-border/70 space-y-4 shadow-xs flex flex-col justify-between">
           <div className="space-y-1.5">
@@ -197,7 +200,8 @@ export function CommandMenuShowcase() {
               <span>1. Global Navigation Palette</span>
             </div>
             <p className="text-xs text-muted-foreground">
-              Quickly jump between high-level admin sections, dashboards, and audit logs.
+              Quickly jump between high-level admin sections, dashboards, and
+              audit logs.
             </p>
           </div>
 
@@ -221,7 +225,8 @@ export function CommandMenuShowcase() {
               <span>2. Developer & DevOps Actions</span>
             </div>
             <p className="text-xs text-muted-foreground">
-              Execute cloud deployments, trigger database snapshots, and switch active git branches.
+              Execute cloud deployments, trigger database snapshots, and switch
+              active git branches.
             </p>
           </div>
 
@@ -245,7 +250,8 @@ export function CommandMenuShowcase() {
               <span>3. Workspace File Finder</span>
             </div>
             <p className="text-xs text-muted-foreground">
-              Fuzzy-search source code files and UI components across your repository.
+              Fuzzy-search source code files and UI components across your
+              repository.
             </p>
           </div>
 
@@ -269,7 +275,8 @@ export function CommandMenuShowcase() {
               <span>4. App Preferences (Theme: {activeTheme})</span>
             </div>
             <p className="text-xs text-muted-foreground">
-              Control accessibility modes, application themes, and system configurations.
+              Control accessibility modes, application themes, and system
+              configurations.
             </p>
           </div>
 
@@ -284,7 +291,6 @@ export function CommandMenuShowcase() {
             </kbd>
           </Button>
         </div>
-
       </div>
     </div>
   );

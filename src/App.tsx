@@ -21,10 +21,10 @@ import {
   CreditCard,
   Sparkles,
   Code2,
-  ChevronLeft,   
-  ChevronDown,   
+  ChevronLeft,
+  ChevronDown,
   Bone,
-  Command,       
+  Command,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -95,7 +95,7 @@ const showcases = [
     label: 'Skeletons',
     icon: Bone,
     component: SkeletonShowcase,
-  }
+  },
 ];
 
 function HomePage() {

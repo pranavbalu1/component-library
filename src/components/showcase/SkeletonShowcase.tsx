@@ -24,7 +24,12 @@ interface TransactionCardProps {
   date: string;
 }
 
-function TransactionCard({ client, amount, status, date }: TransactionCardProps) {
+function TransactionCard({
+  client,
+  amount,
+  status,
+  date,
+}: TransactionCardProps) {
   return (
     <div className="p-4 rounded-2xl bg-card border border-border/70 flex items-center justify-between gap-4">
       <div className="flex items-center gap-3">
@@ -71,17 +76,24 @@ function AllocationGraph({ data }: AllocationGraphProps) {
     <div className="flex flex-col sm:flex-row items-center gap-6 pt-2">
       <div className="relative size-40 rounded-full border-8 border-primary/20 border-t-primary border-r-emerald-400 border-b-sky-400 flex items-center justify-center shrink-0">
         <div className="text-center space-y-0.5">
-          <span className="text-xs font-bold text-muted-foreground block">Total</span>
+          <span className="text-xs font-bold text-muted-foreground block">
+            Total
+          </span>
           <span className="text-lg font-black">$128.4K</span>
         </div>
       </div>
 
       <div className="space-y-3 w-full flex-1">
         {data.map((item) => (
-          <div key={item.label} className="flex items-center justify-between text-xs">
+          <div
+            key={item.label}
+            className="flex items-center justify-between text-xs"
+          >
             <div className="flex items-center gap-2">
               <span className={`size-2.5 rounded-full ${item.color}`} />
-              <span className="font-semibold text-muted-foreground">{item.label}</span>
+              <span className="font-semibold text-muted-foreground">
+                {item.label}
+              </span>
             </div>
             <span className="font-mono font-extrabold">{item.percentage}%</span>
           </div>
@@ -147,9 +159,12 @@ export function SkeletonShowcase() {
             <Sparkles className="size-4" />
             <span>Component Integration</span>
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight">Skeleton Adaptations</h1>
+          <h1 className="text-3xl font-extrabold tracking-tight">
+            Skeleton Adaptations
+          </h1>
           <p className="text-xs text-muted-foreground">
-            Demonstrating how to seamlessly apply skeleton placeholders across cards, charts, and navigation controls.
+            Demonstrating how to seamlessly apply skeleton placeholders across
+            cards, charts, and navigation controls.
           </p>
         </div>
 
@@ -160,13 +175,16 @@ export function SkeletonShowcase() {
           disabled={isLoading}
           className="text-xs font-bold gap-2 border-border/70 self-start sm:self-auto"
         >
-          <RefreshCw className={`size-3.5 ${isLoading ? 'animate-spin text-primary' : ''}`} />
-          <span>{isLoading ? 'Fetching (500ms)...' : 'Simulate 500ms Load'}</span>
+          <RefreshCw
+            className={`size-3.5 ${isLoading ? 'animate-spin text-primary' : ''}`}
+          />
+          <span>
+            {isLoading ? 'Fetching (500ms)...' : 'Simulate 500ms Load'}
+          </span>
         </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
         {/* Variant 1: Pie / Donut Chart Skeleton */}
         <div className="p-6 rounded-3xl bg-card border border-border/70 space-y-4 shadow-xs md:col-span-2">
           <div className="space-y-1">
@@ -175,7 +193,8 @@ export function SkeletonShowcase() {
               <span>1. Pie Chart & Data Visualization</span>
             </h3>
             <p className="text-xs text-muted-foreground">
-              Circular skeleton placeholder paired with legend row shimmers to eliminate chart layout shifts.
+              Circular skeleton placeholder paired with legend row shimmers to
+              eliminate chart layout shifts.
             </p>
           </div>
 
@@ -185,7 +204,7 @@ export function SkeletonShowcase() {
             <AllocationGraph data={chartData} />
           )}
         </div>
-        
+
         {/* Variant 2: Card Component with Skeleton */}
         <div className="p-6 rounded-3xl bg-card border border-border/70 space-y-4 shadow-xs">
           <div className="space-y-1">
@@ -194,7 +213,11 @@ export function SkeletonShowcase() {
               <span>2. Data Card Integration</span>
             </h3>
             <p className="text-xs text-muted-foreground">
-              Using <code className="text-primary font-mono text-[11px]">TransactionCard.Skeleton</code> to mirror component structure.
+              Using{' '}
+              <code className="text-primary font-mono text-[11px]">
+                TransactionCard.Skeleton
+              </code>{' '}
+              to mirror component structure.
             </p>
           </div>
 
@@ -231,7 +254,8 @@ export function SkeletonShowcase() {
               <span>3. Form Actions & Triggers</span>
             </h3>
             <p className="text-xs text-muted-foreground">
-              Preserving exact button dimensions while async options or permissions resolve.
+              Preserving exact button dimensions while async options or
+              permissions resolve.
             </p>
           </div>
 
@@ -239,13 +263,19 @@ export function SkeletonShowcase() {
             <div className="flex items-center justify-between p-3 rounded-2xl border border-border/50 bg-muted/20">
               <div className="space-y-1">
                 <p className="text-xs font-bold">Active Region</p>
-                <p className="text-[10px] text-muted-foreground">Select primary edge server</p>
+                <p className="text-[10px] text-muted-foreground">
+                  Select primary edge server
+                </p>
               </div>
 
               {isLoading ? (
                 <Skeleton className="h-8 w-32 rounded-xl" />
               ) : (
-                <Button variant="outline" size="sm" className="text-xs gap-2 border-border/70">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs gap-2 border-border/70"
+                >
                   <SlidersHorizontal className="size-3.5 text-primary" />
                   <span>us-east-1</span>
                 </Button>
@@ -255,7 +285,9 @@ export function SkeletonShowcase() {
             <div className="flex items-center justify-between p-3 rounded-2xl border border-border/50 bg-muted/20">
               <div className="space-y-1">
                 <p className="text-xs font-bold">New Deployment</p>
-                <p className="text-[10px] text-muted-foreground">Trigger build pipeline</p>
+                <p className="text-[10px] text-muted-foreground">
+                  Trigger build pipeline
+                </p>
               </div>
 
               {isLoading ? (
@@ -278,7 +310,8 @@ export function SkeletonShowcase() {
               <span>4. Pagination Bar Skeleton</span>
             </h3>
             <p className="text-xs text-muted-foreground">
-              Maintains layout height while dynamic page count or entry ranges recalculate.
+              Maintains layout height while dynamic page count or entry ranges
+              recalculate.
             </p>
           </div>
 
@@ -287,8 +320,10 @@ export function SkeletonShowcase() {
               <Skeleton className="h-3.5 w-48" />
             ) : (
               <p className="text-xs text-muted-foreground">
-                Showing <span className="font-semibold text-foreground">1–5</span> of{' '}
-                <span className="font-semibold text-foreground">45</span> entries
+                Showing{' '}
+                <span className="font-semibold text-foreground">1–5</span> of{' '}
+                <span className="font-semibold text-foreground">45</span>{' '}
+                entries
               </p>
             )}
 
@@ -301,23 +336,38 @@ export function SkeletonShowcase() {
               </div>
             ) : (
               <div className="flex items-center gap-1.5">
-                <Button variant="outline" size="icon" className="size-8 rounded-lg border-border/70">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="size-8 rounded-lg border-border/70"
+                >
                   <ChevronLeft className="size-4" />
                 </Button>
-                <Button variant="default" size="icon" className="size-8 rounded-lg text-xs font-bold">
+                <Button
+                  variant="default"
+                  size="icon"
+                  className="size-8 rounded-lg text-xs font-bold"
+                >
                   1
                 </Button>
-                <Button variant="outline" size="icon" className="size-8 rounded-lg text-xs border-border/70">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="size-8 rounded-lg text-xs border-border/70"
+                >
                   2
                 </Button>
-                <Button variant="outline" size="icon" className="size-8 rounded-lg border-border/70">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="size-8 rounded-lg border-border/70"
+                >
                   <ChevronRight className="size-4" />
                 </Button>
               </div>
             )}
           </div>
         </div>
-
       </div>
     </div>
   );

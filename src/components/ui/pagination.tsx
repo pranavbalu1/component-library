@@ -52,14 +52,17 @@ export function Pagination({
 
     if (shouldShowLeftDots && !shouldShowRightDots) {
       const rightItemCount = 3 + 2 * siblingCount;
-      const rightRange = Array.from({ length: rightItemCount }, (_, i) => totalPages - rightItemCount + i + 1);
+      const rightRange = Array.from(
+        { length: rightItemCount },
+        (_, i) => totalPages - rightItemCount + i + 1,
+      );
       return [firstPageIndex, 'DOTS', ...rightRange];
     }
 
     if (shouldShowLeftDots && shouldShowRightDots) {
       const middleRange = Array.from(
         { length: rightSiblingIndex - leftSiblingIndex + 1 },
-        (_, i) => leftSiblingIndex + i
+        (_, i) => leftSiblingIndex + i,
       );
       return [firstPageIndex, 'DOTS', ...middleRange, 'DOTS', lastPageIndex];
     }
@@ -128,7 +131,8 @@ export function Pagination({
               aria-current={isSelected ? 'page' : undefined}
               className={cn(
                 'size-8 rounded-lg font-semibold text-xs transition-all',
-                !isSelected && 'border-border/70 text-muted-foreground hover:text-foreground'
+                !isSelected &&
+                  'border-border/70 text-muted-foreground hover:text-foreground',
               )}
             >
               {page}

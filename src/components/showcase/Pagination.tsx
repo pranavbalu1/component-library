@@ -32,15 +32,17 @@ export function PaginationShowcase() {
           <Sparkles className="size-4" />
           <span>Navigation Controls</span>
         </div>
-        <h1 className="text-3xl font-extrabold tracking-tight">Pagination Variants</h1>
+        <h1 className="text-3xl font-extrabold tracking-tight">
+          Pagination Variants
+        </h1>
         <p className="text-xs text-muted-foreground">
-          Explore numeric page jump controls, compact mobile pagination, data table footers, and simple step controls.
+          Explore numeric page jump controls, compact mobile pagination, data
+          table footers, and simple step controls.
         </p>
       </div>
 
       {/* Showcase Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
         {/* 1. Full Numeric Pagination Component */}
         <div className="p-6 rounded-3xl bg-card border border-border/70 space-y-6 flex flex-col justify-between shadow-xs">
           <div className="space-y-1.5">
@@ -94,14 +96,19 @@ export function PaginationShowcase() {
             </Button>
 
             <span className="text-xs font-mono font-bold text-muted-foreground">
-              <strong className="text-foreground">{pageVariant2}</strong> of {totalPagesVariant2}
+              <strong className="text-foreground">{pageVariant2}</strong> of{' '}
+              {totalPagesVariant2}
             </span>
 
             <Button
               variant="outline"
               size="sm"
               disabled={pageVariant2 === totalPagesVariant2}
-              onClick={() => setPageVariant2((prev) => Math.min(totalPagesVariant2, prev + 1))}
+              onClick={() =>
+                setPageVariant2((prev) =>
+                  Math.min(totalPagesVariant2, prev + 1),
+                )
+              }
               className="text-xs gap-1 border-border/70 font-semibold"
             >
               <span>Next</span>
@@ -118,15 +125,23 @@ export function PaginationShowcase() {
               <span>3. Data Table Footer Pagination</span>
             </h3>
             <p className="text-xs text-muted-foreground">
-              Combines item range metadata with a central numeric pagination strip.
+              Combines item range metadata with a central numeric pagination
+              strip.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-border/60">
             <p className="text-xs text-muted-foreground">
-              Showing <span className="font-semibold text-foreground">{(pageVariant3 - 1) * 10 + 1}</span> to{' '}
-              <span className="font-semibold text-foreground">{Math.min(pageVariant3 * 10, 200)}</span> of{' '}
-              <span className="font-semibold text-foreground">200</span> entries
+              Showing{' '}
+              <span className="font-semibold text-foreground">
+                {(pageVariant3 - 1) * 10 + 1}
+              </span>{' '}
+              to{' '}
+              <span className="font-semibold text-foreground">
+                {Math.min(pageVariant3 * 10, 200)}
+              </span>{' '}
+              of <span className="font-semibold text-foreground">200</span>{' '}
+              entries
             </p>
 
             <Pagination
@@ -145,7 +160,8 @@ export function PaginationShowcase() {
               <span>4. Simple Sequential Step Controls</span>
             </h3>
             <p className="text-xs text-muted-foreground">
-              Minimal controls for multi-step forms, wizards, or documentation reading workflows.
+              Minimal controls for multi-step forms, wizards, or documentation
+              reading workflows.
             </p>
           </div>
 
@@ -161,24 +177,30 @@ export function PaginationShowcase() {
             </Button>
 
             <div className="flex items-center gap-2">
-              {Array.from({ length: totalPagesVariant4 }, (_, i) => i + 1).map((step) => (
-                <button
-                  key={step}
-                  onClick={() => setPageVariant4(step)}
-                  className={`size-2.5 rounded-full transition-all ${
-                    pageVariant4 === step
-                      ? 'bg-amber-400 w-6'
-                      : 'bg-muted-foreground/30 hover:bg-muted-foreground/60'
-                  }`}
-                  aria-label={`Go to step ${step}`}
-                />
-              ))}
+              {Array.from({ length: totalPagesVariant4 }, (_, i) => i + 1).map(
+                (step) => (
+                  <button
+                    key={step}
+                    onClick={() => setPageVariant4(step)}
+                    className={`size-2.5 rounded-full transition-all ${
+                      pageVariant4 === step
+                        ? 'bg-amber-400 w-6'
+                        : 'bg-muted-foreground/30 hover:bg-muted-foreground/60'
+                    }`}
+                    aria-label={`Go to step ${step}`}
+                  />
+                ),
+              )}
             </div>
 
             <Button
               variant="default"
               disabled={pageVariant4 === totalPagesVariant4}
-              onClick={() => setPageVariant4((prev) => Math.min(totalPagesVariant4, prev + 1))}
+              onClick={() =>
+                setPageVariant4((prev) =>
+                  Math.min(totalPagesVariant4, prev + 1),
+                )
+              }
               className="text-xs gap-2 font-bold"
             >
               <span>Next Step</span>
@@ -186,7 +208,6 @@ export function PaginationShowcase() {
             </Button>
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -37,7 +37,7 @@ export function CommandMenu({
       (item) =>
         item.title.toLowerCase().includes(q) ||
         item.subtitle?.toLowerCase().includes(q) ||
-        item.category.toLowerCase().includes(q)
+        item.category.toLowerCase().includes(q),
     );
   }, [items, query]);
 
@@ -66,10 +66,16 @@ export function CommandMenu({
         onClose();
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
-        setSelectedIndex((prev) => (prev + 1) % Math.max(1, filteredItems.length));
+        setSelectedIndex(
+          (prev) => (prev + 1) % Math.max(1, filteredItems.length),
+        );
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
-        setSelectedIndex((prev) => (prev - 1 + filteredItems.length) % Math.max(1, filteredItems.length));
+        setSelectedIndex(
+          (prev) =>
+            (prev - 1 + filteredItems.length) %
+            Math.max(1, filteredItems.length),
+        );
       } else if (e.key === 'Enter' && filteredItems[selectedIndex]) {
         e.preventDefault();
         filteredItems[selectedIndex].onSelect();
@@ -152,19 +158,33 @@ export function CommandMenu({
                         'w-full flex items-center justify-between px-3 py-2.5 rounded-2xl text-xs font-semibold transition-all text-left group select-none',
                         isSelected
                           ? 'bg-primary text-primary-foreground shadow-xs'
-                          : 'text-foreground hover:bg-muted/60'
+                          : 'text-foreground hover:bg-muted/60',
                       )}
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         {item.icon && (
-                          <span className={cn('size-4 shrink-0', isSelected ? 'text-primary-foreground' : 'text-muted-foreground')}>
+                          <span
+                            className={cn(
+                              'size-4 shrink-0',
+                              isSelected
+                                ? 'text-primary-foreground'
+                                : 'text-muted-foreground',
+                            )}
+                          >
                             {item.icon}
                           </span>
                         )}
                         <div className="truncate">
                           <p className="truncate font-semibold">{item.title}</p>
                           {item.subtitle && (
-                            <p className={cn('text-[11px] truncate font-normal', isSelected ? 'text-primary-foreground/80' : 'text-muted-foreground')}>
+                            <p
+                              className={cn(
+                                'text-[11px] truncate font-normal',
+                                isSelected
+                                  ? 'text-primary-foreground/80'
+                                  : 'text-muted-foreground',
+                              )}
+                            >
                               {item.subtitle}
                             </p>
                           )}
@@ -178,13 +198,18 @@ export function CommandMenu({
                               'text-[10px] font-mono px-1.5 py-0.5 rounded border',
                               isSelected
                                 ? 'bg-primary-foreground/20 text-primary-foreground border-primary-foreground/30'
-                                : 'bg-muted text-muted-foreground border-border/60'
+                                : 'bg-muted text-muted-foreground border-border/60',
                             )}
                           >
                             {item.shortcut}
                           </kbd>
                         )}
-                        <ArrowRight className={cn('size-3.5 transition-transform group-hover:translate-x-0.5', isSelected ? 'opacity-100' : 'opacity-0')} />
+                        <ArrowRight
+                          className={cn(
+                            'size-3.5 transition-transform group-hover:translate-x-0.5',
+                            isSelected ? 'opacity-100' : 'opacity-0',
+                          )}
+                        />
                       </div>
                     </button>
                   );
@@ -198,12 +223,18 @@ export function CommandMenu({
         <div className="px-4 py-2.5 bg-muted/30 border-t border-border/60 flex items-center justify-between text-[11px] text-muted-foreground">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
-              <kbd className="font-mono bg-background px-1 rounded border border-border/60">↑</kbd>
-              <kbd className="font-mono bg-background px-1 rounded border border-border/60">↓</kbd>
+              <kbd className="font-mono bg-background px-1 rounded border border-border/60">
+                ↑
+              </kbd>
+              <kbd className="font-mono bg-background px-1 rounded border border-border/60">
+                ↓
+              </kbd>
               <span>Navigate</span>
             </span>
             <span className="flex items-center gap-1">
-              <kbd className="font-mono bg-background px-1 rounded border border-border/60">↵</kbd>
+              <kbd className="font-mono bg-background px-1 rounded border border-border/60">
+                ↵
+              </kbd>
               <span>Select</span>
             </span>
           </div>
