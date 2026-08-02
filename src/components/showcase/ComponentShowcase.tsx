@@ -9,7 +9,7 @@ export function ComponentShowcase() {
         {/* Header */}
         <header className="mb-12">
           <p className="mb-2 text-sm font-medium uppercase tracking-wider text-primary">
-            FinFlex Design System
+            Kyougen's Design System
           </p>
 
           <h1 className="text-4xl font-bold tracking-tight">

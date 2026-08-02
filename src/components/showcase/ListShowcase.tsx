@@ -200,7 +200,7 @@ export function ListShowcase() {
             items={[
               {
                 id: 'acc-1',
-                title: 'FinFlex Card',
+                title: 'List Card',
                 subtitle: '•• 8967',
                 amount: '$4,568.00',
                 category: 'Primary',

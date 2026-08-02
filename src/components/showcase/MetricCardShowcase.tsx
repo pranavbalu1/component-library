@@ -6,7 +6,7 @@ export function MetricCardShowcase() {
     <div className="max-w-6xl mx-auto p-6 space-y-10 bg-background">
       <div>
         <h2 className="text-3xl font-black tracking-tight text-foreground">
-          FinFlex Metric Displays
+          Metric Displays
         </h2>
         <p className="text-sm text-muted-foreground mt-1">
           Configurable stat cards with flexible font sizing, priority emphasis,

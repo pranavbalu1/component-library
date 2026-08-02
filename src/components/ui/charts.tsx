@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { ArrowUpRight, ChevronDown, Check } from 'lucide-react';
+import {
+  ArrowUpRight,
+  ChevronDown,
+  Check,
+  TrendingUp,
+  TrendingDown,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 /* ==========================================================================
@@ -30,6 +36,10 @@ function parseColorStyle(colorClass: string) {
     'bg-cyan-400': '#22d3ee',
     'bg-blue-500': '#3b82f6',
     'bg-purple-500': '#a855f7',
+    'bg-[#e6ff4b]': '#e6ff4b',
+    'bg-[#b0cc29]': '#b0cc29',
+    'bg-[#6d8218]': '#6d8218',
+    'bg-[#42500d]': '#42500d',
   };
 
   const hex = colorMap[colorClass] || '#e6ff4b';
@@ -72,12 +82,7 @@ export function StackedBarGraph({
   title = 'Budget',
   data = [],
   timeframeData,
-  legend = [
-    { label: 'Income', color: 'bg-[#e6ff4b]' },
-    { label: 'Spent', color: 'bg-[#b0cc29]' },
-    { label: 'Scheduled', color: 'bg-[#6d8218]' },
-    { label: 'Savings', color: 'bg-[#42500d]' },
-  ],
+  legend,
   timeframeOptions = ['Monthly', 'Quarterly', 'Yearly'],
   defaultTimeframe = 'Monthly',
   onTimeframeChange,
@@ -88,7 +93,6 @@ export function StackedBarGraph({
   const [selectedTimeframe, setSelectedTimeframe] =
     React.useState(defaultTimeframe);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
-
   const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
   const [hoveredColIndex, setHoveredColIndex] = React.useState<number | null>(
     null,
@@ -112,6 +116,25 @@ export function StackedBarGraph({
     }
     return data;
   }, [data, timeframeData, selectedTimeframe]);
+
+  // FIX 1: Dynamically derive legend from activeData segments if not explicitly passed
+  const activeLegend = React.useMemo(() => {
+    if (legend && legend.length > 0) return legend;
+
+    const legendMap = new Map<string, string>();
+    activeData.forEach((col) => {
+      col.segments.forEach((seg) => {
+        if (!legendMap.has(seg.key)) {
+          legendMap.set(seg.key, seg.color);
+        }
+      });
+    });
+
+    return Array.from(legendMap.entries()).map(([key, color]) => ({
+      label: key.charAt(0).toUpperCase() + key.slice(1),
+      color,
+    }));
+  }, [legend, activeData]);
 
   React.useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -154,7 +177,6 @@ export function StackedBarGraph({
   const getRadiusStyle = (position: 'top' | 'bottom' | 'middle' | 'single') => {
     const r =
       typeof cornerRadius === 'number' ? `${cornerRadius}px` : cornerRadius;
-
     if (position === 'single') return { borderRadius: r };
     if (position === 'top') return { borderRadius: `${r} ${r} 2px 2px` };
     if (position === 'bottom') return { borderRadius: `2px 2px ${r} ${r}` };
@@ -373,12 +395,19 @@ export function StackedBarGraph({
         </div>
       </div>
 
-      {/* Footer Legend */}
-      {legend && (
+      {/* Dynamic Footer Legend */}
+      {activeLegend.length > 0 && (
         <div className="flex items-center justify-center gap-4 flex-wrap pt-3 border-t border-zinc-800/60 mt-2 text-xs">
-          {legend.map((item, idx) => (
+          {activeLegend.map((item, idx) => (
             <div key={idx} className="flex items-center gap-2">
-              <span className={cn('size-2 rounded-full', item.color)} />
+              <span
+                className={cn('size-2 rounded-full', item.color)}
+                style={
+                  item.color.startsWith('#')
+                    ? { backgroundColor: item.color }
+                    : undefined
+                }
+              />
               <span className="text-zinc-400 font-medium">{item.label}</span>
             </div>
           ))}
@@ -571,6 +600,286 @@ export function SemiGaugeGraph({
             </div>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================================================
+   3. AREA & LINE GRAPH (Fintech Performance / Asset Growth)
+   ========================================================================== */
+export interface LinePoint {
+  label: string;
+  value: number;
+}
+
+export interface AreaLineGraphProps extends React.HTMLAttributes<HTMLDivElement> {
+  title?: string;
+  subtitle?: string;
+  data: LinePoint[];
+  strokeColor?: string;
+  gradientStart?: string;
+  gradientStop?: string;
+  onActionClick?: () => void;
+  currencyPrefix?: string;
+}
+
+export function AreaLineGraph({
+  className,
+  title = 'Portfolio Value',
+  subtitle,
+  data = [],
+  strokeColor = '#e6ff4b',
+  gradientStart = 'rgba(230, 255, 75, 0.35)',
+  gradientStop = 'rgba(230, 255, 75, 0.0)',
+  onActionClick,
+  currencyPrefix = '$',
+  ...props
+}: AreaLineGraphProps) {
+  const [hoveredIdx, setHoveredIdx] = React.useState<number | null>(null);
+
+  const values = data.map((d) => d.value);
+  const minVal = Math.min(...(values.length ? values : [0])) * 0.95;
+  const maxVal = Math.max(...(values.length ? values : [100])) * 1.05;
+
+  const width = 500;
+  const height = 180;
+  const paddingY = 15;
+
+  const points = React.useMemo(() => {
+    if (!data.length) return [];
+    return data.map((pt, i) => {
+      const x = (i / (data.length - 1)) * width;
+      const normalizedY = (pt.value - minVal) / (maxVal - minVal || 1);
+      const y = height - paddingY - normalizedY * (height - 2 * paddingY);
+      return { x, y, ...pt };
+    });
+  }, [data, minVal, maxVal]);
+
+  const lineD = React.useMemo(() => {
+    if (!points.length) return '';
+    return points.reduce(
+      (acc, pt, i) =>
+        i === 0 ? `M ${pt.x} ${pt.y}` : `${acc} L ${pt.x} ${pt.y}`,
+      '',
+    );
+  }, [points]);
+
+  const areaD = React.useMemo(() => {
+    if (!points.length) return '';
+    return `${lineD} L ${width} ${height} L 0 ${height} Z`;
+  }, [lineD, points]);
+
+  const currentHovered =
+    hoveredIdx !== null ? points[hoveredIdx] : points[points.length - 1];
+
+  return (
+    <div
+      className={cn(
+        'w-full rounded-3xl bg-[#121214] border border-border/40 p-6 text-foreground select-none flex flex-col justify-between',
+        className,
+      )}
+      {...props}
+    >
+      {/* Header */}
+      <div className="flex items-center justify-between mb-2">
+        <div>
+          <h3 className="text-xl font-bold tracking-tight text-white">
+            {title}
+          </h3>
+          {subtitle && (
+            <p className="text-xs text-zinc-400 mt-0.5">{subtitle}</p>
+          )}
+        </div>
+        {onActionClick && (
+          <button
+            type="button"
+            onClick={onActionClick}
+            className="size-8 rounded-full bg-zinc-800/80 hover:bg-zinc-700 flex items-center justify-center text-white transition-transform active:scale-95"
+          >
+            <ArrowUpRight className="size-4" />
+          </button>
+        )}
+      </div>
+
+      {/* Dynamic Display Value */}
+      <div className="my-2">
+        <span className="text-3xl font-extrabold tracking-tight text-white">
+          {currencyPrefix}
+          {currentHovered ? currentHovered.value.toLocaleString() : '0'}
+        </span>
+        {currentHovered && (
+          <span className="text-xs text-zinc-400 ml-2 font-medium">
+            {currentHovered.label}
+          </span>
+        )}
+      </div>
+
+      {/* SVG Line / Area Graph */}
+      <div className="relative w-full h-44 mt-2">
+        <svg
+          viewBox={`0 0 ${width} ${height}`}
+          className="w-full h-full overflow-visible"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <linearGradient
+              id={`area-grad-${title.replace(/\s+/g, '')}`}
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
+            >
+              <stop offset="0%" stopColor={gradientStart} />
+              <stop offset="100%" stopColor={gradientStop} />
+            </linearGradient>
+          </defs>
+
+          {/* Area Fill */}
+          <path
+            d={areaD}
+            fill={`url(#area-grad-${title.replace(/\s+/g, '')})`}
+          />
+
+          {/* Line Stroke */}
+          <path
+            d={lineD}
+            fill="none"
+            stroke={strokeColor}
+            strokeWidth="3"
+            vectorEffect="non-scaling-stroke"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+
+          {/* Crosshair Vertical Guide */}
+          {hoveredIdx !== null && points[hoveredIdx] && (
+            <line
+              x1={points[hoveredIdx].x}
+              y1={0}
+              x2={points[hoveredIdx].x}
+              y2={height}
+              stroke="rgba(255,255,255,0.25)"
+              strokeDasharray="4 4"
+              strokeWidth="1.5"
+              vectorEffect="non-scaling-stroke"
+            />
+          )}
+        </svg>
+
+        {/* Fixed Pixel-Perfect Hover Indicator Dot */}
+        {hoveredIdx !== null && points[hoveredIdx] && (
+          <div
+            className="pointer-events-none absolute size-4 rounded-full flex items-center justify-center transition-all duration-75"
+            style={{
+              left: `${(points[hoveredIdx].x / width) * 100}%`,
+              top: `${(points[hoveredIdx].y / height) * 100}%`,
+              transform: 'translate(-50%, -50%)',
+            }}
+          >
+            <div
+              className="size-4 rounded-full border-2 border-[#121214] flex items-center justify-center shadow-lg"
+              style={{ backgroundColor: strokeColor }}
+            >
+              <div className="size-1.5 rounded-full bg-[#121214]" />
+            </div>
+          </div>
+        )}
+
+        {/* Hover Capture Columns */}
+        <div className="absolute inset-0 flex">
+          {points.map((_, idx) => (
+            <div
+              key={idx}
+              className="flex-1 h-full cursor-pointer"
+              onMouseEnter={() => setHoveredIdx(idx)}
+              onMouseLeave={() => setHoveredIdx(null)}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================================================
+   4. MINI SPARKLINE GRAPH (KPI / Dynamic Balance Card Helper)
+   ========================================================================== */
+export interface MiniSparklineProps extends React.HTMLAttributes<HTMLDivElement> {
+  label: string;
+  value: string;
+  change: string;
+  isPositive?: boolean;
+  data: number[];
+  color?: string;
+}
+
+export function MiniSparklineGraph({
+  className,
+  label,
+  value,
+  change,
+  isPositive = true,
+  data = [],
+  color = '#e6ff4b',
+  ...props
+}: MiniSparklineProps) {
+  const minVal = Math.min(...data);
+  const maxVal = Math.max(...data);
+  const width = 120;
+  const height = 40;
+
+  const points = data
+    .map((v, i) => {
+      const x = (i / (data.length - 1)) * width;
+      const y = height - ((v - minVal) / (maxVal - minVal || 1)) * height;
+      return `${x},${y}`;
+    })
+    .join(' ');
+
+  return (
+    <div
+      className={cn(
+        'w-full rounded-2xl bg-[#121214] border border-border/40 p-4 flex items-center justify-between',
+        className,
+      )}
+      {...props}
+    >
+      <div>
+        <p className="text-xs text-zinc-400 font-medium">{label}</p>
+        <p className="text-xl font-bold text-white mt-0.5">{value}</p>
+        <div className="flex items-center gap-1 mt-1">
+          {isPositive ? (
+            <TrendingUp className="size-3.5 text-emerald-400" />
+          ) : (
+            <TrendingDown className="size-3.5 text-rose-500" />
+          )}
+          <span
+            className={cn(
+              'text-xs font-semibold',
+              isPositive ? 'text-emerald-400' : 'text-rose-500',
+            )}
+          >
+            {change}
+          </span>
+        </div>
+      </div>
+
+      <div className="w-28 h-10">
+        <svg
+          viewBox={`0 0 ${width} ${height}`}
+          className="w-full h-full overflow-visible"
+        >
+          <polyline
+            fill="none"
+            stroke={color}
+            strokeWidth="2.5"
+            vectorEffect="non-scaling-stroke"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            points={points}
+          />
+        </svg>
       </div>
     </div>
   );
